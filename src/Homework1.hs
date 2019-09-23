@@ -3,15 +3,18 @@ module Homework1 where
 import Debug.Trace
 
 toDigits :: Integer -> [Integer]
-toDigits n = reverse $ toDigitsRev n
+toDigits = reverse . toDigitsRev
 
 toDigitsRev :: Integer -> [Integer]
 toDigitsRev n
     | n <= 0 = []
-    | otherwise = (n `mod` 10) : toDigitsRev (n `div` 10)
+    | otherwise = lastDigit : (toDigitsRev remainder)
+        where
+            lastDigit = n `mod` 10
+            remainder = n `div` 10
 
 doubleEveryOther :: [Integer] -> [Integer]
-doubleEveryOther arr = reverse $ doubleFromStart $ reverse arr
+doubleEveryOther = reverse . doubleFromStart . reverse
     where
         doubleFromStart [] = []
         doubleFromStart (x:[]) = [x]
