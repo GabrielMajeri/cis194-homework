@@ -20,3 +20,11 @@ main = hspec $ do
                 HW1.doubleEveryOther [8, 7, 6, 5] `shouldBe` [16, 7, 12, 5]
             it "works with odd length arrays" $
                 HW1.doubleEveryOther [1, 2, 3] `shouldBe` [1, 4, 3]
+        describe "sumDigits" $ do
+            it "sums the digits of an array of numbers" $
+                HW1.sumDigits [16, 7, 12, 5] `shouldBe` 22
+        describe "validate" $ do
+            it "accepts correct credit card numbers" $
+                HW1.validate 4012888888881881 `shouldBe` True
+            it "rejects invalid credit card numbers" $
+                HW1.validate 4012888888881882 `shouldBe` False

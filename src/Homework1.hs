@@ -1,7 +1,5 @@
 module Homework1 where
 
-import Debug.Trace
-
 toDigits :: Integer -> [Integer]
 toDigits = reverse . toDigitsRev
 
@@ -19,3 +17,11 @@ doubleEveryOther = reverse . doubleFromStart . reverse
         doubleFromStart [] = []
         doubleFromStart (x:[]) = [x]
         doubleFromStart (x:y:xs) = [x, y * 2] ++ (doubleFromStart xs)
+
+sumDigits :: [Integer] -> Integer
+sumDigits = sum . concat . map toDigitsRev
+
+validate :: Integer -> Bool
+validate n = checksum `mod` 10 == 0
+    where
+        checksum = sumDigits (doubleEveryOther (toDigits n))
