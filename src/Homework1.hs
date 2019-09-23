@@ -1,7 +1,9 @@
 module Homework1 where
 
 toDigits :: Integer -> [Integer]
-toDigits n = undefined
+toDigits n = reverse $ toDigitsRev n
 
 toDigitsRev :: Integer -> [Integer]
-toDigitsRev n = undefined
+toDigitsRev n
+    | n <= 0 = []
+    | otherwise = (n `mod` 10) : toDigitsRev (n `div` 10)
