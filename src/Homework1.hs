@@ -25,3 +25,11 @@ validate :: Integer -> Bool
 validate n = checksum `mod` 10 == 0
     where
         checksum = sumDigits (doubleEveryOther (toDigits n))
+
+type Peg = String
+type Move = (Peg, Peg)
+
+hanoi :: Integer -> Peg -> Peg -> Peg -> [Move]
+hanoi n from to temp
+    | n == 1 = [(from, to)]
+    | otherwise = (hanoi (n - 1) from temp to) ++ [(from, to)] ++ (hanoi (n - 1) temp to from)

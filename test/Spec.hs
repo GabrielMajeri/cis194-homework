@@ -28,3 +28,10 @@ main = hspec $ do
                 HW1.validate 4012888888881881 `shouldBe` True
             it "rejects invalid credit card numbers" $
                 HW1.validate 4012888888881882 `shouldBe` False
+        describe "hanoi" $ do
+            it "solves the problem for 1 disc" $
+                HW1.hanoi 1 "x" "y" "z" `shouldBe` [("x", "y")]
+            it "solves the problem for 2 discs" $
+                HW1.hanoi 2 "a" "b" "c" `shouldBe` [("a","c"), ("a","b"), ("c","b")]
+            it "solution for 15 discs has right length" $
+                length (HW1.hanoi 15 "0" "1" "2") `shouldBe` (2^15 - 1)
