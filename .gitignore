@@ -1,0 +1,8 @@
+# Stack's temporary work dir
+/.stack-work/
+
+# Generated Cabal build files
+/*.cabal
+
+# Lock files for tracking dependencies
+/*.lock
