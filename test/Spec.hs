@@ -1,4 +1,6 @@
 import qualified Homework1 as HW1
+import qualified Homework2 as HW2
+import qualified Log as Log
 
 import Test.Hspec
 
@@ -35,3 +37,11 @@ main = hspec $ do
                 HW1.hanoi 2 "a" "b" "c" `shouldBe` [("a","c"), ("a","b"), ("c","b")]
             it "solution for 15 discs has right length" $
                 length (HW1.hanoi 15 "0" "1" "2") `shouldBe` (2^15 - 1)
+    describe "Homework 2" $ do
+        describe "parseMessage" $ do
+            it "parses error messages" $
+                HW2.parseMessage "E 2 562 help help" `shouldBe` Log.LogMessage (Log.Error 2) 562 "help help"
+            it "parses info messages" $
+                HW2.parseMessage "I 29 la la la" `shouldBe` Log.LogMessage Log.Info 29 "la la la"
+            it "parses unknown messages" $
+                HW2.parseMessage "This is not in the right format" `shouldBe` Log.Unknown "This is not in the right format"
