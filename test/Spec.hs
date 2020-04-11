@@ -1,5 +1,6 @@
 import qualified Homework1 as HW1
 import qualified Homework2 as HW2
+import qualified Homework3 as HW3
 import qualified Log as Log
 
 import Test.Hspec
