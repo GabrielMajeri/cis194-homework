@@ -15,5 +15,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Cache stack files
+      uses: actions/cache@v1
+      with:
+        path: ~/.stack/
+        key: stack-${{ hashFiles('*.yaml') }}
+
     - name: Run tests
       run: stack test
