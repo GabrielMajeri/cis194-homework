@@ -38,6 +38,7 @@ main = hspec $ do
                 HW1.hanoi 2 "a" "b" "c" `shouldBe` [("a","c"), ("a","b"), ("c","b")]
             it "solution for 15 discs has right length" $
                 length (HW1.hanoi 15 "0" "1" "2") `shouldBe` (2^15 - 1)
+
     describe "Homework 2" $ do
         describe "parseMessage" $ do
             it "parses error messages" $
@@ -46,3 +47,41 @@ main = hspec $ do
                 HW2.parseMessage "I 29 la la la" `shouldBe` Log.LogMessage Log.Info 29 "la la la"
             it "parses unknown messages" $
                 HW2.parseMessage "This is not in the right format" `shouldBe` Log.Unknown "This is not in the right format"
+
+    describe "Homework 3" $ do
+        describe "skips" $ do
+            it "works with letter strings" $
+                HW3.skips "ABCD" `shouldBe` ["ABCD", "BD", "C", "D"]
+            it "works with strings of letters and symbols" $
+                HW3.skips "hello!" `shouldBe` ["hello!", "el!", "l!", "l", "o", "!"]
+            it "works on singleton lists" $
+                HW3.skips [1] `shouldBe` [[1]]
+            it "works with list of length 2" $
+                HW3.skips [True, False] `shouldBe` [[True, False], [False]]
+            it "ignores empty lists" $
+                HW3.skips [] `shouldBe` ([] :: [[()]])
+        describe "localMaxima" $ do
+            it "works on a list" $
+                HW3.localMaxima [2, 9, 5, 6, 1] `shouldBe` [9, 6]
+            it "returns the unique maximum" $
+                HW3.localMaxima [2, 3, 4, 1, 5] `shouldBe` [4]
+            it "doesn't return anything when there are no local maxima" $
+                HW3.localMaxima [1, 2, 3, 4, 5] `shouldBe` ([] :: [Integer])
+        describe "histogram" $ do
+            it "works with a small list" $
+                HW3.histogram [1, 1, 1, 5] `shouldBe` (unlines [
+                    " *        ",
+                    " *        ",
+                    " *   *    ",
+                    "==========",
+                    "0123456789"
+                ])
+            it "works with a big list" $
+                HW3.histogram [1, 4, 5, 4, 6, 6, 3, 4, 2, 4, 9] `shouldBe` (unlines [
+                    "    *     ",
+                    "    *     ",
+                    "    * *   ",
+                    " ******* *",
+                    "==========",
+                    "0123456789"
+                ])
