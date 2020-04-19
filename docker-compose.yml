@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  stack:
+    image: haskell:8
+    working_dir: /code
+    volumes:
+      - .:/code
+      - /code/.stack-work
+    entrypoint: ["stack", "test"]
