@@ -9,8 +9,19 @@ This is an excellent course for learning functional programming using Haskell.
 
 ## Building and Running
 
-This repository uses the Haskell tool [Stack](https://www.haskellstack.org/)
-to build and test the code.
+### With Docker
+
+If you don't want to install Haskell locally, you can just use the provided
+[Docker](https://www.docker.com/) image.
+
+```sh
+$ sudo docker-compose up -d
+$ sudo docker-compose run stack stack test
+```
+
+### With locally installed stack
+
+You can build and test the code with the tool [Stack](https://www.haskellstack.org/).
 
 ```sh
 stack build
